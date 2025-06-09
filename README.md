@@ -153,3 +153,80 @@ Narzędzia pomocnicze.
 Praktyczne przykłady użycia biblioteki znajdują się w katalogu `examples/`.
 *   **`examples/showcase1.cpp`** (kompilowany do `./showcase`): Demonstruje użycie modułów algebry liniowej, statystyki, interpolacji Lagrange'a, operacji plikowych oraz rozwiązywania równań różniczkowych.
 *   **`examples/showcase2.cpp`** (kompilowany do `./showcase2`): Demonstruje znajdowanie miejsc zerowych, całkowanie numeryczne, interpolację Newtona oraz specyficzne obliczenia meteorologiczne.
+
+
+Poniżej znajdują się proste przykłady demonstrujące, jak korzystać z biblioteki.
+
+### Przykład 1: Rozwiązywanie układu równań liniowych
+
+Poniższy kod definiuje układ równań Ax = b i rozwiązuje go przy użyciu dekompozycji LU.
+
+```cpp
+#include <iostream>
+#include "linalg.hpp" // Dołączamy moduł algebry liniowej
+
+int main() {
+    // Definicja macierzy A i wektora b
+    MeteoNumerical::Common::Matrix A = {{4, 1, -1}, {1, 5, 2}, {2, -1, 6}};
+    MeteoNumerical::Common::ValueSeries b = {7, 14, 18};
+
+    std::cout << "Rozwiazywanie ukladu Ax = b dla:" << std::endl;
+    std::cout << "Macierz A:" << std::endl;
+    MeteoNumerical::LinearAlgebra::printMatrix(A);
+    std::cout << "Wektor b:" << std::endl;
+    MeteoNumerical::LinearAlgebra::printVector(b);
+
+    try {
+        // Rozwiązanie układu
+        MeteoNumerical::Common::ValueSeries x = MeteoNumerical::LinearAlgebra::solveWithLU(A, b);
+
+        std::cout << "\nWynik (wektor x):" << std::endl;
+        MeteoNumerical::LinearAlgebra::printVector(x); // Oczekiwany wynik: [1.0, 2.0, 3.0]
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Wystapil blad: " << e.what() << std::endl;
+    }
+
+  return 0;
+}
+```
+
+### Przykład 2: Interpolacja danych i zapis do pliku
+
+Ten przykład pokazuje, jak interpolować funkcję przy użyciu wielomianu Lagrange'a na podstawie kilku węzłów, a następnie zapisać wynik do pliku CSV.
+
+      
+```cpp 
+#include <iostream>
+#include <vector>
+#include "interpolation.hpp"
+#include "fileio.hpp"
+
+int main() {
+    // Węzły interpolacji (np. dla funkcji f(x) = x^2)
+    MeteoNumerical::Common::ValueSeries x_nodes = {0.0, 2.0, 4.0};
+    MeteoNumerical::Common::ValueSeries y_nodes = {0.0, 4.0, 16.0};
+
+    // Punkty, w których chcemy obliczyć wartość z interpolacji
+    MeteoNumerical::Common::ValueSeries x_to_interpolate;
+    for (double i = 0; i <= 4.0; i += 0.5) {
+        x_to_interpolate.push_back(i);
+    }
+    
+    MeteoNumerical::Common::ValueSeries y_interpolated;
+    for (double x_val : x_to_interpolate) {
+        double y_val = MeteoNumerical::Interpolation::Lagrange::lagrangeInterpolate(x_nodes, y_nodes, x_val);
+        y_interpolated.push_back(y_val);
+    }
+
+    // Zapis wyników do pliku CSV
+    try {
+        MeteoNumerical::FileIO::writeXYDataToCSV("interpolation_results.csv", x_to_interpolate, y_interpolated, "x", "interpolated_y");
+        std::cout << "Wyniki interpolacji zostaly zapisane do pliku 'interpolation_results.csv'." << std::endl;
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Blad zapisu do pliku: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+```
+    
