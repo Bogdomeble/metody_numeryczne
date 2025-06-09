@@ -1,0 +1,41 @@
+# ============================================================================
+# .gitignore dla projektu C++ kompilowanego za pomocą Makefile
+# ============================================================================
+
+# 1. Katalogi z plikami generowanymi podczas kompilacji
+# Ignoruj cały katalog 'build', w którym znajdują się pliki obiektowe (.o).
+build/
+
+# 2. Skompilowane pliki binarne (programy i biblioteki)
+# Ignoruj pliki wykonywalne generowane przez Makefile.
+showcase
+showcase2
+run_tests
+
+# Ignoruj skompilowaną bibliotekę statyczną.
+*.a
+
+# Ogólne reguły dla innych systemów operacyjnych.
+*.exe
+*.dll
+*.so
+
+# 3. Pliki generowane przez uruchomienie programów
+# Ignoruj pliki CSV tworzone przez przykłady.
+*.csv
+*.log
+
+# 4. Pliki konfiguracyjne popularnych edytorów i IDE
+# Dzięki temu repozytorium będzie czyste, niezależnie od tego,
+# jakiego edytora używają programiści.
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 5. Pliki systemowe
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
