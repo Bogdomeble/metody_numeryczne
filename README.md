@@ -153,8 +153,7 @@ Narzędzia pomocnicze.
 Praktyczne przykłady użycia biblioteki znajdują się w katalogu `examples/`.
 *   **`examples/showcase1.cpp`** (kompilowany do `./showcase`): Demonstruje użycie modułów algebry liniowej, statystyki, interpolacji Lagrange'a, operacji plikowych oraz rozwiązywania równań różniczkowych.
 *   **`examples/showcase2.cpp`** (kompilowany do `./showcase2`): Demonstruje znajdowanie miejsc zerowych, całkowanie numeryczne, interpolację Newtona oraz specyficzne obliczenia meteorologiczne.
-
-
+*   **`examples/approx_example.cpp`** (kompilowany do `./approx_example`): Demonstruje aproksymację średniokwadratową podanej funkcji za pomocą różnych wielkości bazy jednomianów wraz z wypisywaniem błędu.
 Poniżej znajdują się proste przykłady demonstrujące, jak korzystać z biblioteki.
 
 ### Przykład 1: Rozwiązywanie układu równań liniowych
