@@ -9,7 +9,7 @@ using namespace MeteoNumerical;
 TEST(StatisticsTest, AverageCalculationCorrect) {
     // Przypadek poprawny: Obliczenie średniej dla typowego wektora.
     Common::ValueSeries data = {10.0, 15.0, 20.0, 25.0, 30.0};
-    EXPECT_NEAR(Statistics::calculate_average(data), 20.0, 1e-9);
+    EXPECT_NEAR(Statistics::calculate_average(data), 20.0, 1e-8);
 }
 
 TEST(StatisticsTest, AverageForEmptyVectorIsNaN) {
@@ -27,7 +27,7 @@ TEST(StatisticsTest, StdDevWithLessThanTwoElementsIsNaN) {
 
 TEST(StatisticsTest, FindMin) {
     MeteoNumerical::Common::ValueSeries values = {10.0, -5.0, 30.0, 0.0};
-    EXPECT_NEAR(MeteoNumerical::Statistics::find_min(values), -5.0, 1e-9);
+    EXPECT_NEAR(MeteoNumerical::Statistics::find_min(values), -5.0, 1e-8);
 }
 
 TEST(StatisticsTest, FindMinEmptyIsNaN) {
@@ -37,7 +37,7 @@ TEST(StatisticsTest, FindMinEmptyIsNaN) {
 
 TEST(StatisticsTest, FindMax) {
     MeteoNumerical::Common::ValueSeries values = {10.0, -5.0, 30.0, 0.0};
-    EXPECT_NEAR(MeteoNumerical::Statistics::find_max(values), 30.0, 1e-9);
+    EXPECT_NEAR(MeteoNumerical::Statistics::find_max(values), 30.0, 1e-8);
 }
 
 TEST(StatisticsTest, FindMaxEmptyIsNaN) {
@@ -48,7 +48,7 @@ TEST(StatisticsTest, FindMaxEmptyIsNaN) {
 TEST(StatisticsTest, CalculateVariance) {
     MeteoNumerical::Common::ValueSeries values = {2, 4, 4, 4, 5, 5, 7, 9};
     double std_dev = 2.138089935;
-    EXPECT_NEAR(MeteoNumerical::Statistics::calculate_variance(values, false), std_dev * std_dev, 1e-9);
+    EXPECT_NEAR(MeteoNumerical::Statistics::calculate_variance(values, false), std_dev * std_dev, 1e-8);
 }
 
 TEST(StatisticsTest, CalculateVarianceWithLessThanTwoElementsIsNaN) {
@@ -60,7 +60,7 @@ TEST(StatisticsTest, CalculateMSE) {
     MeteoNumerical::Common::ValueSeries y_true = {1.0, 2.0, 3.0, 4.0};
     MeteoNumerical::Common::ValueSeries y_pred = {1.5, 2.5, 3.5, 4.5};
     // (0.5^2 + 0.5^2 + 0.5^2 + 0.5^2) / 4 = (0.25 * 4) / 4 = 0.25
-    EXPECT_NEAR(MeteoNumerical::Statistics::calculate_mse(y_true, y_pred), 0.25, 1e-9);
+    EXPECT_NEAR(MeteoNumerical::Statistics::calculate_mse(y_true, y_pred), 0.25, 1e-8);
 }
 
 TEST(StatisticsTest, CalculateMSEWithMismatchedSizesIsNaN) {

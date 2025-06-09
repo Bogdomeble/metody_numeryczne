@@ -20,7 +20,7 @@ TEST(ODETest, RK4Step) {
 TEST(ODETest, SolveFull) {
     double t0 = 0.0, y0 = 1.0;
     double t_final = 1.0;
-    double h = 0.1;
+    double h = 0.05;
     
     MeteoNumerical::ODE::ODESolution solution = MeteoNumerical::ODE::solve(simple_ode_func, t0, y0, t_final, h, "rk4");
     

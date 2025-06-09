@@ -18,7 +18,7 @@ int main() {
     // Stopnie wielomianów do przetestowania
     std::vector<int> degrees = {10, 20, 30};
     // Liczba podprzedziałów do całkowania (zgodnie z oryginałem)
-    constexpr int partitions_for_integration = 93;
+    constexpr int partitions_for_integration = 31;
 
     for (int degree : degrees) {
         std::cout << "\n=======================================================\n";
