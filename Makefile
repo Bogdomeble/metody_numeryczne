@@ -53,7 +53,7 @@ $(TARGET_LIB): $(LIB_OBJECTS)
 
 # Zależność od $(TARGET_LIB) zapewnia, że biblioteka jest zbudowana jako pierwsza.
 # Ale w komendzie linkera używamy -L. -lmeteo, a nie pliku .a bezpośrednio.
-$(EXAMPLE1_EXEC): $(EXAMPLE_DIR)/main.cpp $(TARGET_LIB)
+$(EXAMPLE1_EXEC): $(EXAMPLE_DIR)/showcase1.cpp $(TARGET_LIB)
 	@echo "LINKOWANIE: $@ (Program #1)"
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $< -o $@ -L. -lmeteo
 
@@ -94,6 +94,6 @@ $(BUILD_DIR)/gtest/%.o: $(GTEST_DIR)/src/%.cc
 
 clean:
 	@echo "CZYSZCZENIE: Usuwanie wygenerowanych plików..."
-	rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC)
+	rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC) *.csv
 
 .PHONY: all test clean
