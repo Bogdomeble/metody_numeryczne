@@ -61,7 +61,7 @@ $(EXAMPLE2_EXEC): $(EXAMPLE_DIR)/showcase2.cpp $(TARGET_LIB)
 	@echo "LINKOWANIE: $@ (Program #2)"
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $< -o $@ -L. -lmeteo
 
-# POPRAWKA: Usunęliśmy $(TARGET_LIB) z listy plików dla linkera (zmienna $^).
+# POPRAWKA: Usunięto $(TARGET_LIB) z listy plików dla linkera (zmienna $^).
 # Zamiast tego polegamy w 100% na flagach -L i -l.
 $(TEST_EXEC): $(TEST_OBJECTS) $(GTEST_OBJECTS) $(TARGET_LIB)
 	@echo "LINKOWANIE: $@ (Testy)"
