@@ -43,7 +43,7 @@ MeteoNumericalLib/
 1.  **Sklonuj repozytorium:**
     ```bash
     git clone https://github.com/Bogdomeble/metody_numeryczne.git
-    cd MeteoNumericalLib
+    cd metody_numeryczne
     ```
 
 2.  **Zainicjuj i pobierz submoduł Google Test:**
