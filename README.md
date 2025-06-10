@@ -24,7 +24,7 @@ MeteoNumericalLib/
 │   ├── lib/googletest  # Kod źródłowy Google Test (jako submoduł Git)
 │   └── *.cpp           # Pliki z testami
 ├── examples/           # Przykładowe programy demonstrujące użycie biblioteki
-├── build/              # (Generowany) Katalog z plikami obiektowymi (.o)
+├── build/              # (Generowany) Katalog z plikami obiektowymi (.o), jest usuwany po zlinkowaniu
 ├── .gitignore          # Plik z listą ignorowanych plików
 ├── Makefile            # Plik konfiguracyjny do budowania projektu
 └── README.md           # Ta dokumentacja
