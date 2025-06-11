@@ -66,6 +66,9 @@ MeteoNumericalLib/
 
     # Uruchomienie drugiego przykładu
     ./showcase2
+    
+    # Uruchomienie trzeciego przykładu
+    ./approx_example
     ```
     Programy te wygenerują również pliki `.csv` z wynikami swoich obliczeń.
 
