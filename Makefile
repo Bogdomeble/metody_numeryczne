@@ -99,7 +99,7 @@ $(BUILD_DIR)/gtest/%.o: $(GTEST_DIR)/src/%.cc
 # =============================================================================
 
 clean:
-	@echo "CZYSZCZENIE: Usuwanie wygenerowanych plików..."
-	rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC) *.csv, approx_example
-
+    @echo "CZYSZCZENIE: Usuwanie wygenerowanych plików..."
+    rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC) approx_example
+    find . -name "*.csv" -delete
 .PHONY: all test clean
