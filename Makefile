@@ -39,7 +39,7 @@ GTEST_OBJECTS = $(patsubst $(GTEST_DIR)/src/%.cc, $(BUILD_DIR)/gtest/%.o, $(GTES
 # Główne Reguły
 # =============================================================================
 
-all: $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC)  approx_example
+all: $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC)  approx_example gauss_example
 
 test: $(TEST_EXEC)
 	@echo "URUCHAMIANIE TESTÓW..."
@@ -66,6 +66,10 @@ approx_example: $(EXAMPLE_DIR)/approximation_example.cpp $(TARGET_LIB)
 	@echo "LINKOWANIE: $@ (Przykład Aproksymacji)"
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $< -o $@ -L. -lmeteo
 
+# Reguła do budowania przykładowego programu eliminacji Gaussa
+gauss_example: $(EXAMPLE_DIR)/gauss_example.cpp $(TARGET_LIB)
+	@echo "LINKOWANIE: $@ (Przykład Gaussa)"
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $< -o $@ -L. -lmeteo
 
 # POPRAWKA: Usunięto $(TARGET_LIB) z listy plików dla linkera (zmienna $^).
 # Zamiast tego polegamy w 100% na flagach -L i -l.
@@ -100,6 +104,6 @@ $(BUILD_DIR)/gtest/%.o: $(GTEST_DIR)/src/%.cc
 
 clean:
 	@echo "CZYSZCZENIE: Usuwanie wygenerowanych plików..."
-	rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC) approx_example
+	rm -rf $(BUILD_DIR) $(TARGET_LIB) $(EXAMPLE1_EXEC) $(EXAMPLE2_EXEC) $(TEST_EXEC) approx_example gauss_example
 	find . -name "*.csv" -delete
 .PHONY: all test clean

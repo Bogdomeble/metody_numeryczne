@@ -37,6 +37,7 @@ Common::ValueSeries gaussElimination(Common::Matrix A, Common::ValueSeries b) {
         }
         augmented[i][n] = b[i];
     }
+    
     for (size_t k = 0; k < n; ++k) { // Używamy size_t
         size_t max_row_idx = k; // Używamy size_t
         for (size_t i = k + 1; i < n; ++i) { // Używamy size_t
@@ -54,15 +55,24 @@ Common::ValueSeries gaussElimination(Common::Matrix A, Common::ValueSeries b) {
                 augmented[i][j] -= factor * augmented[k][j];
             }
         }
+       //  // Wyświetlamy macierz po każdej iteracji
     }
-    Common::ValueSeries x(n);
+    Common::ValueSeries x;
+    x.resize(n);
+
+    if (x.size() != n) {
+        throw std::runtime_error("GaussElimination: Size mismatch in solution vector.");
+    }
     for (int i = n - 1; i >= 0; --i) { // Tutaj int jest OK, bo idziemy w dół
         x[i] = augmented[i][n];
         for (size_t j = i + 1; j < n; ++j) { // Używamy size_t
             x[i] -= augmented[i][j] * x[j];
         }
         x[i] /= augmented[i][i];
+        //printVector(x, std::cout, 4); // Wyświetlamy wektor rozwiązania po każdej iteracji
     }
+    std::cout << "Końcowa macierz A:\n";
+    printMatrix(augmented, std::cout, 4);
     return x;
 }
 
